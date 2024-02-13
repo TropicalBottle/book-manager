@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->references('id')->on('users');
-            $table->foreignId('id_book')->references('id')->on('books');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('book_id')->references('id')->on('books');
             $table->integer('review_amount');
             $table->string('review_content');
             $table->boolean('is_public');
