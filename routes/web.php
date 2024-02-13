@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/books', [BookController::class, 'index'])->name('books');
+Route::post('/books', [BookController::class, 'store']);
+Route::get('/book/{id}', [BookController::class, 'find']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
