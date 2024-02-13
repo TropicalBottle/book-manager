@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .alert {
+        @apply rounded-md p-4 w-full;
+    }
+
+    .alert-success {
+        @apply bg-green-200 text-green-900;
+    }
+
+    .alert-error {
+        @apply bg-red-200 text-red-900;
+    }
+
+    .title-2 {
+        @apply font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight;
+    }
+}
