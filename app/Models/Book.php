@@ -11,14 +11,16 @@ class Book extends Model
 {
     use HasFactory;
 
-    protected $filable = [
+    protected $table = 'books';
+
+    protected $fillable = [
         'title',
         'description',
         'picture_path',
         'isbn',
     ];
 
-    public $timestamp = false;
+    public $timestamps = false;
 
     public function review(): HasMany {
         return $this->hasMany(Review::class);
