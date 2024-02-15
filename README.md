@@ -1,66 +1,131 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Get started
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**If you too, when asked what's your favourite book is, you forget every book you ever read. This project might be for
+you!**
+With this application, when asked this question, you will have access to the entirety of all the books you registered,
+with the review you could have wrote for them... But that's only the start! See <a href="#roadmap">Roadmap</a>
 
-## About Laravel
+## Stack used
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Laravel v10.x
+- PHP v8.1.x
+- MariaDB latest
+- Node.js v18.17.1
+- NPM v10.1.0
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## With docker
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Requirements
 
-## Learning Laravel
+- Stable version of [Docker](https://docs.docker.com/engine/install/)
+- Compatible version of [Docker Compose](https://docs.docker.com/compose/install/#install-compose)
+  Build or rebuild services
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Use Docker
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+````bash
+docker compose up --build
+````
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Access the terminal of the php service
 
-## Laravel Sponsors
+````bash
+docker exec -ti book-manager-php-1 bash
+````
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Initialize the values of the database
 
-### Premium Partners
+````bash
+php artisan migrate
+php artisan db:seed
+````
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+#### Laravel App
+- URL: http://localhost
 
-## Contributing
+## Without Docker
+The Laravel framework has a few system requirements. You should ensure that your web server has the following minimum PHP version and extensions:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    PHP >= 8.1
+    Ctype PHP Extension
+    cURL PHP Extension
+    DOM PHP Extension
+    Fileinfo PHP Extension
+    Filter PHP Extension
+    Hash PHP Extension
+    Mbstring PHP Extension
+    OpenSSL PHP Extension
+    PCRE PHP Extension
+    PDO PHP Extension
+    Session PHP Extension
+    Tokenizer PHP Extension
+    XML PHP Extension
 
-## Code of Conduct
+To install dependencies:
+````bash
+composer install
+````
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+````bash
+npm install
+````
 
-## Security Vulnerabilities
+**Don't forget to set the .env with your settings. You can copy the .env.example.**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Initialize the values of the database
+````bash
+php artisan migrate
+php artisan db:seed
+````
 
-## License
+To run the laravel server & to build Tailwind automatically:
+````bash
+php artisan serve
+npm run dev
+````
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Testing
+## Write test
+Laravel application's use PHPUnit for testing purposes. If you want to know more about it the Laravel
+documentation explain the commands: https://laravel.com/docs/10.x/testing
+
+Otherwise, I would also recommend this video that explained everything very well (in French 🇫🇷): https://www.youtube.com/watch?v=_MJmU-wRwpI
+
+## Execute test
+To test without coverage
+```bash
+php artisan test
+```
+
+To test with coverage:
+```bash
+php artisan test --coverage
+```
+
+
+# Roadmap 🚩
+## 1.0
+
+The first version of this project, will make sure you can have your own library everywhere you want from the already
+hosted website, or from this application you could build.
+- [x] Working user system
+  - [x] Authentification
+  - [ ] Roles
+- [ ] Library
+  - [ ] Add books to library
+  - [ ] Access your library
+- [ ] Reviews
+  - [ ] Write your reviews
+  - [ ] Access your reviews
+- [ ] Wishlist
+    - [ ] Add books to wishlist
+    - [ ] Access your wishlist
+
+## 2.0
+
+This version will let you join a group of users when you can share a common library. This will let you see the books your friends
+added to the group, and their reviews. It's perfect for reading clubs or friend group that want to share easily books between them.
+- [ ] Group
+  - [ ] Create a group
+  - [ ] Join a group
+  - [ ] See group user library
