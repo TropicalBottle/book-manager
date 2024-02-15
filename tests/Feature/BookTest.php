@@ -9,7 +9,7 @@ use Tests\TestCase;
 class BookTest extends TestCase
 {
     /*
-     * Test if a book can be created witouth a title
+     * Test if a book can be created without a title
      */
     public function testCantCreateBookWithoutTitle(): void
     {
