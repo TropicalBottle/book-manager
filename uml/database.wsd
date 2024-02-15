@@ -1,0 +1,50 @@
+@startuml database diagram
+
+    entity "User" {
+        * id : Int
+        --
+        * name : String
+        * mail : String
+        * password : String
+        remember_token : String
+        email_verified_at : Timestamp
+        created_at : Timestamp
+        updated_at : Timestamp
+    }
+
+    entity "Book" {
+        * id : Int
+        --
+        * title : String
+        description : String
+        picture_path : String
+        isbn : String
+    }
+
+    entity "Review" {
+        * id : Int
+        --
+        * user_id : Int
+        * book_id : Int
+        * review_amount : Int
+        review_content : String
+        is_public : Boolean
+        created_at : Timestamp
+        updated_at : Timestamp
+    }
+
+    entity "Book_User" {
+        * id : Int
+        --
+        * user_id : Int
+        * book_id : Int
+        created_at : Timestamp
+        updated_at : Timestamp
+    }
+
+    "User" |o..o| "Book_User"
+    "Book" }|..|| "Book_User"
+    "User" }o..o| "Review"
+    "Book" }o--o| "Review"
+
+@enduml

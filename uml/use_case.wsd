@@ -1,0 +1,31 @@
+@startuml Use Case of the application
+    actor Unregistered_User
+    actor Registered_User
+    actor Admin
+
+    Unregistered_User --> (Access list of books): Books with existing public review
+    Unregistered_User --> (Register)
+    (Register) --|> (Login)
+    Unregistered_User --> (Login)
+    Registered_User --> (Access list of books)
+    Admin --> (Access Dashboard)
+    (Access list of books) --> (Access detail of a book)
+    Registered_User --> (Access library)
+    Registered_User --> (Access wishlist)
+    (Access library) --> (Add book to library)
+    (Add book to library) --> (Remove book from library)
+    (Remove book from library) --|> (Access library)
+    (Access library) --> (Add book to wishlist)
+    (Access wishlist) --> (Remove book from wishlist)
+    (Add book to wishlist) --> (Remove book from wishlist)
+    (Remove book from wishlist) --|> (Access wishlist)
+    (Access library) --> (Review a book)
+    (Access Dashboard) --> (Access list of users)
+    (Access list of users) --> (Can delete a user)
+    (Can delete a user) --|> (Access list of users)
+    (Access list of users) --> (Can modify a user)
+    (Can modify a user) --|> (Access list of users)
+    (Access Dashboard) --> (Access reviews)
+    (Access reviews) --> (Can delete a review)
+    (Can delete a review) --|> (Access reviews)
+@enduml
