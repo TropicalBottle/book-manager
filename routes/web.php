@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/books', [BookController::class, 'index'])->name('books');
 Route::post('/books', [BookController::class, 'store']);
-Route::get('/book/{id}', [BookController::class, 'find']);
+Route::get('/book/{id}', [BookController::class, 'find'])->name('book-detail');
 
 Route::get('/my-books', [BookController::class, 'user_list'])->name('my-books');
 Route::post('/my-books', [BookController::class, 'add_book_user'])->name('add-book');
