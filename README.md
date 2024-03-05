@@ -1,4 +1,4 @@
-# Get started
+# Get started ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/TropicalBottle/17db8e26653ba907cebc6d69088c87e1/raw/test.json)
 
 **If you too, when asked what's your favourite book is, you forget every book you ever read. This project might be for
 you!**
