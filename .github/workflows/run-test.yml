@@ -21,3 +21,15 @@ jobs:
 
       - name: Run tests
         run: php artisan test
+
+      - name: Badge Test Coverage
+        if: github.ref == 'refs/heads/master'
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 17db8e26653ba907cebc6d69088c87e1
+          filename: test.json
+          label: Coverage
+          message: "${{ steps.coverageComment.outputs.tests }} tests - ${{ steps.coverageComment.outputs.coverage }}"
+          color: ${{ steps.coverageComment.outputs.color }}
+          namedLogo: php
