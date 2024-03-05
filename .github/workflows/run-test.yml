@@ -20,14 +20,7 @@ jobs:
           php-version: '8.1'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
           coverage: xdebug
-
-      - name: Install PHPUnit globally
-        run: |
-          composer global require phpunit/phpunit
-          echo "::add-path::${HOME}/.composer/vendor/bin"
-        env:
-          COMPOSER_BIN_DIR: "${{ env.HOME }}/.composer/vendor/bin"
-          PATH: "${{ env.HOME }}/.composer/vendor/bin:${{ env.PATH }}"
+          tools: phpunit
 
       - name: Install Composer dependencies
         run: composer install -n --prefer-dist
