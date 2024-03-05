@@ -42,7 +42,16 @@ class BookController extends Controller
     public function find($id)
     {
         $book = Book::find($id);
-        return view('book', ['book' => $book]);
+        $is_already_to_library = false;
+        if (auth()->user()) {
+            $user = auth()->user();
+
+            if ($user && $book && $user->book->contains($book)) {
+                $is_already_to_library = true;
+            }
+        }
+
+        return view('book', ['book' => $book, 'already_to_library' => $is_already_to_library]);
     }
 
     public function user_list() {
@@ -58,11 +67,32 @@ class BookController extends Controller
     }
 
     public function add_book_user(Request $request) {
-        $user = auth()->user(); //@todo: être sur que l'utilisateur est connecté
+        if (auth()->user()) {
+            $user = auth()->user();
+        } else {
+            return redirect()->back()->with('error', 'You need to be connected to add a book to your library');
+        }
+
         $book = Book::find($request->input('book'));
+
+        if ($user && $book && $user->book->contains($book)) {
+            return redirect()->back()->with('error', 'You already added the book to your library');
+        }
 
         $user->book()->attach($book);
         return redirect()->back()->with('success', 'The book was succesfully added');
     }
 
+    public function remove_book_library(Request $request)
+    {
+        if (auth()->user()) {
+            $user = auth()->user();
+        } else {
+            return redirect()->back()->with('error', 'You need to be connected to add a book to your library');
+        }
+
+        $book = Book::find($request->input('book'));
+        $user->book()->detach($book);
+        return redirect()->route('my-books')->with('success', 'The book was succesfully removed');
+    }
 }
