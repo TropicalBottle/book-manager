@@ -1,0 +1,15 @@
+language: php
+php:
+  - 8.1
+os: linux
+
+before_script:
+  - rm -rf composer.lock
+  - composer install
+script:
+  - mkdir -p build/logs
+  - vendor/bin/phpunit -c phpunit.xml
+after_success:
+  - travis_retry php vendor/bin/coveralls
+  # or enable logging
+  - travis_retry php vendor/bin/coveralls -v
