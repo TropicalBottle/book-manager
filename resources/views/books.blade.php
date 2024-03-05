@@ -31,7 +31,7 @@
             </form>
         </div>
     @endif
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:mx-24 md:mb-12">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:mx-24 md:mb-12 @if(!Auth::user()) md:mt-12 @endif">
         @foreach($books as $book)
             <a href="{{route('book-detail', ['id' => $book->id])}}" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
