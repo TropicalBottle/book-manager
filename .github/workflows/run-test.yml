@@ -1,42 +1,43 @@
 name: Run tests
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   tests:
     name: Run tests
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
-          coverage: none
+          coverage: xdebug
 
-      - name: Run composer install
+      - name: Install PHPUnit globally
+        run: |
+          composer global require phpunit/phpunit
+          echo "::add-path::${HOME}/.composer/vendor/bin"
+        env:
+          COMPOSER_BIN_DIR: "${{ env.HOME }}/.composer/vendor/bin"
+          PATH: "${{ env.HOME }}/.composer/vendor/bin:${{ env.PATH }}"
+
+      - name: Install Composer dependencies
         run: composer install -n --prefer-dist
 
-      - name: Run tests
+      - name: Run tests and generate coverage
         run: php artisan test --coverage-clover=coverage.xml
-
-      - name: Badge Test Coverage
-        if: github.ref == 'refs/heads/master'
-        uses: schneegans/dynamic-badges-action@v1.7.0
-        with:
-          auth: ${{ secrets.GIST_SECRET }}
-          gistID: 17db8e26653ba907cebc6d69088c87e1
-          filename: test.json
-          label: Coverage
-          message: "${{ steps.coverageComment.outputs.tests }} tests - ${{ steps.coverageComment.outputs.coverage }}"
-          color: ${{ steps.coverageComment.outputs.color }}
-          namedLogo: php
+        env:
+          XDEBUG_MODE: coverage
 
       - name: Upload coverage results to Coveralls
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          composer global require php-coveralls/php-coveralls
-          php-coveralls --coverage_clover=build/logs/clover.xml -v
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
