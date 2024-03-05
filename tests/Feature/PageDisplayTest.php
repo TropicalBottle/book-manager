@@ -8,6 +8,7 @@ use Tests\TestCase;
 
 class PageDisplayTest extends TestCase
 {
+    use RefreshDatabase;
     /*
      * Check if the homepage is working when no user is connected
      */

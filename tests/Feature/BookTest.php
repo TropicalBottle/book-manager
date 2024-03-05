@@ -11,6 +11,8 @@ use Tests\TestCase;
 
 class BookTest extends TestCase
 {
+
+    use RefreshDatabase;
     /*
      * Test if a book can be created without a title
      */
