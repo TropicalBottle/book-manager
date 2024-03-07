@@ -12,6 +12,13 @@
         updated_at : Timestamp
     }
 
+    entity "Group" {
+        * id : Int
+        --
+        * creator_id : Int
+        * name : String
+    }
+
     entity "Book" {
         * id : Int
         --
@@ -33,7 +40,7 @@
         updated_at : Timestamp
     }
 
-    entity "Book_User" {
+    entity "User_Book" {
         * id : Int
         --
         * user_id : Int
@@ -42,9 +49,45 @@
         updated_at : Timestamp
     }
 
-    "User" |o..o| "Book_User"
-    "Book" }|..|| "Book_User"
-    "User" }o..o| "Review"
-    "Book" }o--o| "Review"
+    entity "Book_Group" {
+        * id : Int
+        --
+        * group_id : Int
+        * book_id : Int
+        created_at : Timestamp
+        updated_at : Timestamp
+    }
+
+    entity "User_Group" {
+        * id : Int
+        --
+        * group_id : Int
+        * user_id : Int
+        created_at : Timestamp
+        updated_at : Timestamp
+    }
+
+    entity "Review_Group" {
+        * id : Int
+        --
+        * group_id : Int
+        * review_id : Int
+        created_at : Timestamp
+        updated_at : Timestamp
+    }
+
+    "User" }--o "User_Book" : 0..*
+    "User_Book" }--o "Book" : 0..*
+    "Book" }--o "Review" : 0..*
+    "User" }--o "Review" : 0..*
+
+    "User" }--o "User_Group" : 0..*
+    "User_Group" }--o "Group" : 0..*
+
+    "Book" }--o "Book_Group" : 0..*
+    "Book_Group" }--o "Group" : 0..*
+
+    "Review" }--o "Review_Group" : 0..*
+    "Review_Group" }--o "Book_Group" : 0..*
 
 @enduml
