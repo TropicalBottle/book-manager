@@ -112,9 +112,9 @@ hosted website, or from this application you could build.
 - [x] Working user system
   - [x] Authentification
   - [ ] Roles
-- [ ] Library
-  - [ ] Add books to library
-  - [ ] Access your library
+- [X] Library
+  - [X] Add books to library
+  - [X] Access your library
 - [ ] Reviews
   - [ ] Write your reviews
   - [ ] Access your reviews
