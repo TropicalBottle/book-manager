@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -51,7 +52,7 @@ class BookController extends Controller
             }
         }
 
-        return view('book', ['book' => $book, 'already_to_library' => $is_already_to_library]);
+        return view('book', ['book' => $book, 'already_to_library' => $is_already_to_library, 'reviews' => Review::where('book_id', $id)->get()]);
     }
 
     public function user_list() {

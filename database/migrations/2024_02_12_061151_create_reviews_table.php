@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('book_id')->references('id')->on('books');
             $table->integer('review_amount');
-            $table->string('review_content');
-            $table->boolean('is_public');
+            $table->text('review_content');
+            $table->boolean('is_public')->default(0);
             $table->timestamps();
         });
     }

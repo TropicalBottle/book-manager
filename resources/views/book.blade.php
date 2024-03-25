@@ -47,6 +47,7 @@
                     @endif
                 </form>
             @endif
+            <livewire:comment-section :reviews="$reviews"/>
         </div>
     </div>
 </x-app-layout>
