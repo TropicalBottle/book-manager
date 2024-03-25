@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+.star-rating {
+    display: inline-block;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2em;
+    color: #ffcc00;
+    cursor: pointer;
+}
+
+
+.star-rating input:checked ~ input + label {
+    color: #ddd;
+}
+
+.star-rating input:checked ~ input + label:hover {
+    color: #f5e397;
+}
+
 @layer components {
     .alert {
         @apply rounded-md p-4 w-full;
