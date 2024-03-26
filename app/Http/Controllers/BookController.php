@@ -67,6 +67,16 @@ class BookController extends Controller
         return redirect()->back()->with('error', 'You need to be connected to see that page');
     }
 
+    public function user_reviews() {
+        if (auth()->user()) {
+            $user = auth()->user();
+            $user_reviews = $user->review()->orderByDesc('created_at')->get();
+
+            return view('user.my-reviews', ['user_reviews' => $user_reviews]);
+        }
+
+        return redirect()->back()->with('error', 'You need to be connected to see that page');
+    }
     public function add_book_user(Request $request) {
         if (auth()->user()) {
             $user = auth()->user();

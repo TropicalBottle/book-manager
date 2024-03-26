@@ -31,6 +31,8 @@ Route::delete('/book/{id}', [BookController::class, 'remove_book_library'])->nam
 Route::get('/my-books', [BookController::class, 'user_list'])->name('my-books');
 Route::post('/my-books', [BookController::class, 'add_book_user'])->name('add-book');
 
+Route::get('/my-reviews', [BookController::class, 'user_reviews'])->name('my-reviews');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
