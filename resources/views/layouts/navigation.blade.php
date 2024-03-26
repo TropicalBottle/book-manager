@@ -45,6 +45,10 @@
                             {{ __('My books') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('my-reviews')">
+                            {{ __('My reviews') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
