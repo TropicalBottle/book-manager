@@ -115,9 +115,9 @@ hosted website, or from this application you could build.
 - [X] Library
   - [X] Add books to library
   - [X] Access your library
-- [ ] Reviews
-  - [ ] Write your reviews
-  - [ ] Access your reviews
+- [X] Reviews
+  - [X] Write your reviews
+  - [X] Access your reviews
 - [ ] Wishlist
     - [ ] Add books to wishlist
     - [ ] Access your wishlist
