@@ -13,6 +13,22 @@
             @endif
 
             {{-- @TODO: Check if book already in library--}}
+            @auth()
+                @php
+                    try {
+                        $wishlist_entry = \App\Models\Wishlist::where('user_id', auth()->user()->id)
+                                                                ->where('book_id', $book->id)
+                                                                ->firstOrFail();
+                        $in_wishlist = true;
+                    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                        $wishlist_entry = null;
+                        $in_wishlist = false;
+                    }
+                @endphp
+                {{--TODO: the button is only working once--}}
+                <livewire:wishlist-button key="{{ now() }}" :wishlist="$wishlist_entry" :user_id="auth()->user()->id" :book_id="$book->id"
+                                          :in_wishlist="$in_wishlist"></livewire:wishlist-button>
+            @endauth
             @if(!$already_to_library)
                 <form method="POST">
                     @csrf
@@ -20,12 +36,14 @@
                     <x-primary-button class="my-4">{{ __('Add to library') }}</x-primary-button>
                     @if(session('error'))
                         <div class="alert alert-error col-span-3">
-                            <i class="inline-block sidebar-group-parent-arrow reversed-sidebar-arrow" data-eva="alert-triangle-outline" data-eva-fill="#7f1d1d"></i> {{ session('error') }}
+                            <i class="inline-block sidebar-group-parent-arrow reversed-sidebar-arrow"
+                               data-eva="alert-triangle-outline" data-eva-fill="#7f1d1d"></i> {{ session('error') }}
                         </div>
                     @endif
                     @if(session('success'))
                         <div class="alert alert-success col-span-3">
-                            <i class="inline-block sidebar-group-parent-arrow reversed-sidebar-arrow" data-eva="checkmark-outline" data-eva-fill="#14532D"></i>{{ session('success') }}
+                            <i class="inline-block sidebar-group-parent-arrow reversed-sidebar-arrow"
+                               data-eva="checkmark-outline" data-eva-fill="#14532D"></i>{{ session('success') }}
                         </div>
                     @endif
                 </form>
@@ -37,12 +55,14 @@
                     <x-primary-button class="my-4">{{ __('Remove book from library') }}</x-primary-button>
                     @if(session('error'))
                         <div class="alert alert-error col-span-3">
-                            <i class="inline-block sidebar-group-parent-arrow reversed-sidebar-arrow" data-eva="alert-triangle-outline" data-eva-fill="#7f1d1d"></i> {{ session('error') }}
+                            <i class="inline-block sidebar-group-parent-arrow reversed-sidebar-arrow"
+                               data-eva="alert-triangle-outline" data-eva-fill="#7f1d1d"></i> {{ session('error') }}
                         </div>
                     @endif
                     @if(session('success'))
                         <div class="alert alert-success col-span-3">
-                            <i class="inline-block sidebar-group-parent-arrow reversed-sidebar-arrow" data-eva="checkmark-outline" data-eva-fill="#14532D"></i>{{ session('success') }}
+                            <i class="inline-block sidebar-group-parent-arrow reversed-sidebar-arrow"
+                               data-eva="checkmark-outline" data-eva-fill="#14532D"></i>{{ session('success') }}
                         </div>
                     @endif
                 </form>
