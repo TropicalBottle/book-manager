@@ -24,7 +24,7 @@ class ReviewFactory extends Factory
         return [
             'user_id' => $user->id,
             'book_id' => $book->id,
-            'review_amount' => $this->faker->numberBetween(),
+            'review_amount' => $this->faker->numberBetween(1, 5),
             'review_content' => $this->faker->paragraph,
             'is_public' => $this->faker->boolean(),
         ];

@@ -53,4 +53,21 @@ class ReviewTest extends TestCase
 
         $this->assertDatabaseMissing('reviews', ['id' => $review->id]);
     }
+
+    public function testReviewIsCreatedWithCorrectAttributes()
+    {
+        $data = [
+            'book_id' => 1,
+            'user_id' => 1,
+            'review_amount' => 4,
+        ];
+
+        $review = Review::factory()->create();
+
+        $this->assertEquals($data['book_id'], $review->book_id);
+        $this->assertEquals($data['user_id'], $review->user_id);
+        $this->assertLessThanOrEqual(4, $data['review_amount'], $review->review_amount);
+        $this->assertIsString($review->review_content);
+        $this->assertIsBool($review->is_public);
+    }
 }
