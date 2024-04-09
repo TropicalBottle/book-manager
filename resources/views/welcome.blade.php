@@ -8,7 +8,7 @@
                 friends.</p>
             <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                 @if(auth()->user())
-                    <a href="{{route('books')}}"
+                    <a href="{{route('my-books')}}"
                        class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-text rounded-lg bg-secondary hover:bg-accent dark:bg-d-secondary focus:ring-4 focus:ring-secondary dark:focus:ring-d-secondary">
                         Access book list
                         <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -31,7 +31,7 @@
                     </a>
                 @endif
                 <a href="#"
-                   class="underline inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-text dark:text-d-text rounded-lg focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-800">
+                   class="underline inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-text dark:text-d-text rounded-lg">
                     <svg class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                          xmlns="http://www.w3.org/2000/svg">
                         <path

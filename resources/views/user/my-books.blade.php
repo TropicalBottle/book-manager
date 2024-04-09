@@ -5,6 +5,32 @@
         </h2>
     </x-slot>
 
+    @if(Auth::user())
+        <div class="mx-20 my-20 p-5 border border-gray-600 rounded">
+            @if(session('error'))
+                <div class="alert alert-error col-span-3">
+                    <i class="inline-block sidebar-group-parent-arrow reversed-sidebar-arrow" data-eva="alert-triangle-outline" data-eva-fill="#7f1d1d"></i> {{ session('error') }}
+                </div>
+            @endif
+            @if(session('success'))
+                <div class="alert alert-success col-span-3">
+                    <i class="inline-block sidebar-group-parent-arrow reversed-sidebar-arrow" data-eva="checkmark-outline" data-eva-fill="#14532D"></i>{{ session('success') }}
+                </div>
+            @endif
+
+            <form method="post" class="mt-6 space-y-6">
+                @csrf
+                <x-input-label for="title" :value="__('Name of the book')" />
+                <x-text-input name="title" placeholder="Book name" />
+
+                <x-input-label for="description" :value="__('Description of the book')" />
+                <x-textarea-input name="description" placeholder="Book description" />
+
+                <br>
+                <x-primary-button>{{ __('Create book') }}</x-primary-button>
+            </form>
+        </div>
+    @endif
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-8 md:mx-24 md:mb-12 @if(!Auth::user()) md:mt-12 @endif">
         @if(count($user_books) > 0)
             @foreach($user_books as $book)
