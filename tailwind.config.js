@@ -21,7 +21,7 @@ export default {
                 'secondary': '#fcd978',
                 'accent': '#faf04f',
                 'd-text': '#fbfce9',
-                'd-background': '#070808',
+                'd-background': '#1b1f1f',
                 'd-primary': '#c8d11a',
                 'd-secondary': '#0f7b6c',
                 'd-accent': '#156bac',
