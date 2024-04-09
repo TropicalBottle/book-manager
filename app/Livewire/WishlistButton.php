@@ -46,7 +46,7 @@ class WishlistButton extends Component
         $this->dispatch('wishlistUpdated');
     }
 
-    public function render(): View
+    public function render()
     {
         return view('livewire.wishlist-button');
     }
