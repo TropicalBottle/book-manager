@@ -26,8 +26,11 @@
                     }
                 @endphp
                 {{--TODO: the button is only working once--}}
-                <livewire:wishlist-button key="{{ now() }}" :wishlist="$wishlist_entry" :user_id="auth()->user()->id" :book_id="$book->id"
-                                          :in_wishlist="$in_wishlist"></livewire:wishlist-button>
+                <div class="inline-block">
+                    <livewire:wishlist-button key="{{ now() }}" :wishlist="$wishlist_entry" :user_id="auth()->user()->id" :book_id="$book->id"
+                                              :in_wishlist="$in_wishlist"></livewire:wishlist-button>
+                    <livewire:delete-button key="{{now()}}" :book="$book"></livewire:delete-button>
+                </div>
             @endauth
             @if(!$already_to_library)
                 <form method="POST">
