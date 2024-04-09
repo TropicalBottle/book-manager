@@ -40,6 +40,33 @@ class BookController extends Controller
         return redirect()->back()->with('error', 'Failed to save the book');
     }
 
+    public function storeAndAddUser(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string',
+            'description' => 'nullable|string',
+        ]) ;
+
+        if ($validator->fails()) {
+            if (!$request->input('title')) {
+                return redirect()->back()->with('error', 'You need to add a title');
+            } else {
+                return redirect()->back()->with('error', 'An error occured');
+            }
+        }
+
+        $book = new Book();
+        $book->title = $request->input('title');
+        $book->description = $request->input('description');
+
+        if ($book->save()) {
+            $user = auth()->user();
+            $user->book()->attach($book->id);
+            return redirect()->back()->with('success', 'The book was created');
+        }
+
+        return redirect()->back()->with('error', 'Failed to save the book');
+    }
+
     public function find($id)
     {
         $book = Book::find($id);

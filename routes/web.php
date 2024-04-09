@@ -29,7 +29,7 @@ Route::post('/book/{id}', [BookController::class, 'add_book_user'])->name('add-b
 Route::delete('/book/{id}', [BookController::class, 'remove_book_library'])->name('remove-book-library');
 
 Route::get('/my-books', [BookController::class, 'user_list'])->name('my-books');
-Route::post('/my-books', [BookController::class, 'add_book_user'])->name('add-book');
+Route::post('/my-books', [BookController::class, 'storeAndAddUser'])->name('add-book');
 
 Route::get('/my-reviews', [BookController::class, 'user_reviews'])->name('my-reviews');
 
